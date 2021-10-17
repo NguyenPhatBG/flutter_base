@@ -1,33 +1,45 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'config/enviroment/env.dart';
+import 'config/route/route_define.dart';
+import 'manifest.dart';
+import 'views/unAuthenticate/intro/intro_route.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+void main() => Main();
 
+class Main extends Env {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Dev',
-      theme: ThemeData(
-        primaryColor: Colors.amberAccent,
-      ),
-      home: const Home(),
-    );
+  FutureOr<StatefulWidget> onCreate() {
+    ErrorWidget.builder = (details) {
+      Zone.current.handleUncaughtError(details.exception, details.stack!);
+      return Container(
+        color: Colors.transparent,
+      );
+    };
+    return const Application();
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class Application extends StatefulWidget {
+  const Application({Key? key}) : super(key: key);
 
   @override
+  _ApplicationState createState() => _ApplicationState();
+}
+
+class _ApplicationState extends State<Application> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-      title: const Text('Home page'),
-    ));
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: () => MaterialApp(
+        title: 'Flutter Architecture',
+        initialRoute: IntroRoute.id,
+        onGenerateRoute: (settings) => manifest(generateRoutes, settings),
+      ),
+    );
   }
 }

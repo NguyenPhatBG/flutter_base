@@ -6,13 +6,6 @@ import '../utility/logging.dart';
 enum Flavor { development, staging, preprod, release }
 
 class BuildConfig {
-  final String baseUrl;
-  final String socketUrl;
-  final int connectTimeout;
-  final int receiveTimeout;
-  final Flavor flavor;
-  final Color color;
-
   const BuildConfig._(
       {required this.baseUrl,
       required this.socketUrl,
@@ -20,8 +13,6 @@ class BuildConfig {
       required this.receiveTimeout,
       required this.flavor,
       this.color = Colors.blue});
-
-  static BuildConfig? _instance;
 
   const BuildConfig._development()
       : this._(
@@ -52,16 +43,18 @@ class BuildConfig {
             receiveTimeout: 5000,
             flavor: Flavor.release);
 
-  static init({flavor}) {
+  static BuildConfig? _instance;
+
+  static dynamic init(Flavor flavor) {
     if (_instance == null) {
       switch (flavor) {
-        case 'development':
+        case Flavor.development:
           _instance = const BuildConfig._development();
           break;
-        case 'staging':
+        case Flavor.staging:
           _instance = const BuildConfig._staging();
           break;
-        case 'preprod':
+        case Flavor.preprod:
           _instance = const BuildConfig._preprod();
           break;
         default:
@@ -76,21 +69,28 @@ class BuildConfig {
     return _instance;
   }
 
-  static _iniLog(flavor) async {
-    await Log.init();
+  static dynamic _iniLog(flavor) async {
+    await Log().init();
     switch (_instance?.flavor) {
       case Flavor.development:
       case Flavor.staging:
       case Flavor.preprod:
-        Log.setLevel(Level.ALL);
+        await Log().setLevel(Level.ALL);
         break;
       case Flavor.release:
-        Log.setLevel(Level.OFF);
+        await Log().setLevel(Level.OFF);
         break;
       default:
         break;
     }
   }
+
+  final String baseUrl;
+  final String socketUrl;
+  final int connectTimeout;
+  final int receiveTimeout;
+  final Flavor flavor;
+  final Color color;
 
   static bool isDevelopment() => _instance?.flavor == Flavor.development;
 

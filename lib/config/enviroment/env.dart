@@ -7,9 +7,9 @@ abstract class Env {
     _init();
   }
 
-  _init() {
+  dynamic _init() {
     runZonedGuarded(() async {
-      final StatefulWidget app = await onCreate();
+      final app = await onCreate();
 
       runApp(app);
     }, (error, stack) {});

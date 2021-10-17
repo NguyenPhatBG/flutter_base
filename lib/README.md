@@ -1,8 +1,14 @@
 1. Basic (Android & iOS)
+    - Set up enviroments for dart | flutter project
     - Set up icon application (done)
     - Add splash screen (done)
     - Change application name (done)
-    - assets folder: images & fonts (processing)
+    - assets folder: images & fonts (done)
+    - release android (.apk, .aab), ios (.ipa)
+    - normalization (lefthook, lint)
+        + lefthook: https://github.com/evilmartians/lefthook/blob/master/docs/node.md
+        + lint (analysis_options.yaml)
+    - Multiple languages
     - routes
         - unAuthenticate
             - Introduce
@@ -34,6 +40,3 @@
     - json_serializable & build_runner
         + do Google xuất bản, package này tự động tạo code để serialize và giải mã hóa(deserialize) class dữ liệu của chúng ta.
         + https://200lab.io/blog/lam-viec-voi-json-serialization-trong-flutter/
-4.  Setup auto init app & format code
-    - Lefthook: https://github.com/evilmartians/lefthook/blob/master/docs/node.md
-    - npm run setup
