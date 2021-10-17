@@ -1,0 +1,46 @@
+name: fimex
+description: Learn flutter v3.0.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+# Design pattern
+
+# Common
+  cupertino_icons: ^1.0.2
+  flutter_screenutil: ^5.0.0+2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^6.0.0 # do Google xuất bản, package này tự động tạo code để serialize và giải mã hóa(deserialize) class dữ liệu của chúng ta.
+  build_runner: ^2.1.4 # gói cung cấp một cách cụ thể tạo ra các file sử dụng mã Dart nhằm hỗ trợ phát triển các dự án Dart với package:build
+  flutter_lints: ^1.0.0
+
+# To add assets to your application, add an assets section, like this:
+flutter:
+  generate: true
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/2x/
+    - assets/images/3x/
+  fonts:
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand-Regular.ttf
+        - asset: assets/fonts/Quicksand-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Quicksand-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Quicksand-Light.ttf
+          weight: 300
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf

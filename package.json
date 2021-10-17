@@ -1,0 +1,20 @@
+{
+  "name": "fimex",
+  "version": "1.0.0",
+  "description": "Learning about Flutter",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "setup": "npm install && npx lefthook install",
+    "generate": "flutter pub run build_runner build --delete-conflicting-outputs",
+    "init": "flutter pub get && npm run generate && cd configuration && npm run init"
+  },
+  "author": "dev.phatnv@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@arkweid/lefthook": "^0.7.7"
+  }
+}
